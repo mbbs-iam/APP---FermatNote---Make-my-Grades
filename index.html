@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
+  <meta name="description"
+    content="Hub de Classe — Lycée Louis le Grand · Devoirs, Forum, Chat et Notices pour les élèves." />
+  <meta name="theme-color" content="#e7fff3" />
+
+  <!-- Configuration PWA iOS (iPhone / iPad) -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Fermat Note" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
+
+  <title>Fermat Note</title>
+
+  <link rel="manifest" href="manifest.json" />
+
+  <link rel="stylesheet" href="design-tokens.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+</head>
+
+      </div>
+    </header>
+
+    <main id="main-content" role="main">
+
+      <section id="section-devoirs" class="section" role="region" aria-label="Devoirs à faire" style="display:none">
+
+        <div class="page-header">
+          <div class="page-header__text">
+            <h2>Devoirs</h2>
+            <p>Reste à jour sur tes cours</p>
+          </div>
+        </div>
+
+        <div class="section-toggle" role="group" aria-label="Vue">
+          <button id="toggle-devoirs" class="section-toggle__btn section-toggle__btn--active">
+            <span class="material-symbols-outlined">assignment</span>
+            Devoirs
+          </button>
+          <button id="toggle-evaluations" class="section-toggle__btn">
+            <span class="material-symbols-outlined">quiz</span>
+            Évaluations
+          </button>
+        </div>
+
+        <div class="devoirs-stats" id="devoirs-stats-block">
+               &nbsp;/&nbsp;
+              <span id="devoirs-stats-total">0</span>
+            </span>
+       div>
+
+        <div class="filter-bar" id="devoirs-filter-bar" role="toolbar" aria-label="Filtrer les devoirs">
+          <button class="filter-btn filter-btn--active devoir-filter-btn" data-filter="tous">
+            <span class="material-symbols-outlined">list</span> Tous
+          </button>
+          <button class="filter-btn filter-btn--inactive devoir-filter-btn" data-filter="en-cours">
+            <span class="material-symbols-outlined">pending</span> En cours
+          </button>
+          <button class="filter-btn filter-btn--inactive devoir-filter-btn" data-filter="faits">
+            <span class="material-symbols-outlined">assignment_turned_in</span> Faits
+          </button>
+        </div>
+
+        <div id="devoirs-feed" role="list" aria-label="Liste des devoirs" aria-live="polite"></div>
+        <div id="evaluations-feed" role="list" aria-label="Évaluations à venir" aria-live="polite" style="display:none">
+        </div>
+
+        <button id="fab-new-devoir" aria-label="Ajouter un devoir" title="Nouveau devoir" style="display:flex">
+          <span class="material-symbols-outlined">add_task</span>
+        </button>
+
+        <div id="modal-new-devoir" class="modal-backdrop" role="dialog" aria-modal="true"
+          aria-labelledby="modal-devoir-title">
+          <div class="modal">
+            <div class="modal__handle" aria-hidden="true"></div>
+            <h2 class="modal__title" id="modal-devoir-title">Ajouter un devoir 📚</h2>
+            <div class="form-group">
+              <label class="form-label" for="devoir-matiere">Matière</label>
+              <select class="form-select" id="devoir-matiere">
+                <option value="Mathématiques">📐 Mathématiques</option>
+                <option value="Physique-Chimie">⚗️ Physique-Chimie</option>
+                <option value="SVT">🌿 SVT</option>
+                <option value="SES">📊 SES</option>
+                <option value="Histoire-Géo / HGGSP">🌍 Histoire-Géo / HGGSP</option>
+                <option value="Français / Philo / HLP">📖 Français / Philo / HLP</option>
+                <option value="Anglais (LV1)">🌐 Anglais (LV1)</option>
+                <option value="NSI">💻 NSI</option>
+                <option value="Sciences de l'Ingénieur">⚙️ Sciences de l'Ingénieur</option>
+                <option value="Espagnol / Allemand (LV2)">💬 Espagnol / Allemand (LV2)</option>
+                <option value="Arts / Littérature">🎨 Arts / Littérature</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="devoir-titre">Titre du devoir <span
+                  style="color:var(--color-tertiary-container);">*</span></label>
+              <input class="form-input" type="text" id="devoir-titre" placeholder="Ex : Exercices 4 et 5 page 245"
+                maxlength="100" autocomplete="off" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="devoir-date">Date limite</label>
+              <input class="form-input" type="date" id="devoir-date" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Image du sujet (optionnel)</label>
+              <button id="devoir-attach-btn" type="button" class="btn-cancel"
+                style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span class="material-symbols-outlined">add_photo_alternate</span> Joindre une photo
+              </button>
+              <input type="file" id="devoir-file-input" accept="image/*"
+                style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;" aria-hidden="true"
+                tabindex="-1" />
+              <div id="devoir-image-preview-wrap"
+                style="display:none; margin-bottom: 0.75rem; padding: 0.5rem; border: 2px solid var(--color-primary); border-radius: var(--radius-xl); background: var(--color-surface-container); text-align: center;">
+                <img id="devoir-preview-img" src=""
+          <span class="material-symbols-outlined">quiz</span> Ajouter l'évaluation
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div style="height: 130px; flex-shrink: 0; width: 100%;"></div>
+      </section>
+
+      <section id="section-courrier" class="section" role="region" aria-label="Courrier International"
+        style="display:none">
+
+        <div class="section-header">
+          <div class="page-header">
+            <div class="page-header__text">
+              <h2>Courrier International</h2>
+              <p>Actualités mondiales pour les élèves</p>
+            </div>
+          </div>
+
+          <div class="filter-bar" role="toolbar" aria-label="Filtrer par catégorie">
+            <button class="filter-btn filter-btn--active courrier-filter-btn" data-cat="tous">
+              <span class="material-symbols-outlined">public</span>Tous
+            </button>
+            <button class="filter-btn filter-btn--inactive courrier-filter-btn" data-cat="Monde">
+
+            <!-- Image Notice -->
+            <div class="form-group">
+              <label class="form-label">Image (optionnelle)</label>
+              <button id="notice-attach-btn" type="button" class="btn-cancel" style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; width: fit-content;">
+                <sp
+      </section>
+
+      <section id="section-profil" class="section" role="region" aria-label="Mon profil" style="display:none">
+        <div class="page-header">
+          <div class="page-header__text">
+            <h2>Mon Profil</h2>
+ class="nav-tab" id="tab-devoirs" onclick="navigateTo('devoirs')">
+          <span class="nav-tab__icon material-symbols-outlined">assignment</span>
+          <span class="nav-tab__label">Devoirs</span>
+        </button>
+        <button class="nav-tab" id="tab-forum" onclick="navigateTo('forum')">
+          <span class="nav-tab__icon material-symbols-outlined">forum</span>
+          <span class="nav-tab__label">Forum</span>
+        </button>
+        <button class="nav-tab active" id="tab-chat" onclick="navigateTo('chat')">
+
+        sec.addEventListener("scroll", function () {
+          if (!ticking) {
+            requestAnimationFrame(function () {
+              const cur = sec.scrollTop;
+              const delta = Math.abs(cur - prev);
+              if (delta > 15) {
+                if (cur > prev && cur > 50) {
+                  hdr.classList.add("header--hidden");
+                } else {
+                  hdr.classList.remove("header--hidden");
+                }
+                prev = Math.max(0, cur);
+              }
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      });
+    })();
+
+  </script>
+
+</body>
+
+</html>
