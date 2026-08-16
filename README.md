@@ -39,8 +39,6 @@ So that I can prepare the direct link and the customized version of the app for 
 
 * **Form link:** [Google Docs - "Fermat-Note" to get elected Class Representative](https://docs.google.com/forms/d/e/1FAIpQLSfwGoAIPFJpoOpS0vCYRK4KGW670emxxjfuyq34-uXClhyj9w/viewform?usp=header)
 * **Materials provided:** In addition to the form, I am providing a full presentation slideshow (and very soon a pre-written presentation text). You don't need to create anything, you just present the project to your class. I will handle sharing the slideshow and all necessary information.
-* **Slideshow link:** [Google Slides - Fermat-Note Presentation](https://docs.google.com/presentation/d/1fT6NlFbtddN2YXvQL-g2oQYcgQmsn5_LYJnRE_bnIB4/edit?usp=sharing)
-
 
 
 I would really appreciate it if as many of you as possible could test it today—especially those using iPhones or different phone models—to make sure there are no display issues or bugs.
