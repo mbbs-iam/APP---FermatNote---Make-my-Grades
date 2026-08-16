@@ -19,7 +19,7 @@ I am developing **Fermat-Note**, an application designed specifically for high s
 * **New this summer:** I'm working on new improvements throughout the break. I've already finished all the planned changes and am continuing to enhance the app.
 * **Test the template:** The application is finally ready. I'm giving you exclusive access so you can try it out early! You can try the template today to see how it works.
 * **Link:** [https://cuentasfermat.web.app/](https://cuentasfermat.web.app/)
-* **Class code (random high school template):** `ChromaFermat@2026`
+* **Class code (random high school template):** `FermatNotes@Fermat022`
 
 
 * **Technical support:** A company strongly believes in this project and is already providing us with professional servers. Next year, a company will offer me servers.
